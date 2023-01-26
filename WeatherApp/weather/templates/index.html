@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block title %} Homepage {% endblock %}
+
+{% block content %}
+<form method="POST" id="background" name="theForm">
+    <div class="container py-5 h-100">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class="col-md-8 col-lg-6 col-xl-4">
+  
+          <h3 class="mb-4 pb-2 fw-normal">Check the weather forecast</h3>
+  
+          <div class="input-group rounded mb-3">
+            <input name="cityinput" type="search" class="form-control rounded" placeholder="City" aria-label="Search"
+              aria-describedby="search-addon" />
+            <button type="submit" name="action" value="submit" class="btn btn-primary"> Check </button>
+          </div>
+  
+          <div class="mb-4 pb-2">
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="units" id="inlineRadio1"
+                value="metric"  checked />
+              <label class="form-check-label" for="inlineRadio1">Celsius</label>
+            </div>
+  
+            <div class="form-check form-check-inline">
+              <input class="form-check-input" type="radio" name="units" id="inlineRadio2"
+                value="imperial"  />
+              <label class="form-check-label" for="inlineRadio2">Farenheit</label>
+            </div>
+            <div class="form-check form-check-inline">
+              <button type="submit" name="action" class="apply" value="apply"> apply </button>
+            </div>
+          </div>
+          {% for city_data in cities_data %}
+            <div class="card shadow-0 border">
+              <div class="card-body p-4">
+                <div class="d-flex">
+                  <i style="cursor:pointer;" title="Delete todo" onclick="deleteNote({{city_data.id}})"  class="text-danger fas fa-trash-alt" ></i>
+                  <h4 class="mb-1 sfw-normal" > {{city_data.city}}, {{city_data.country}}</h4>
+                </div>
+                <p class="mb-2">Current temperature: <strong> {{city_data.curtemp}} °{{city_data.unit}}</strong></p>
+                <p>Feels like: <strong>{{city_data.feellike}}°{{city_data.unit}}</strong></p>
+                <p>Max: <strong>{{city_data.maxtemp}}°{{city_data.unit}}</strong>, Min: <strong>{{city_data.mintemp}}°{{city_data.unit}}</strong></p>
+    
+                <div class="d-flex flex-row align-items-center">
+                  <p class="mb-0 me-4">{{city_data.description}}</p>
+                  <figure class="image is-50x50">
+                    <img src="http://openweathermap.org/img/wn/{{city_data.icon}}@2x.png" alt="image">
+                  </figure>
+                </div>
+    
+              </div>
+            </div>
+          {% endfor %}
+  
+        </div>
+      </div>
+  
+    </div>
+</form>
+
+{% endblock %}
