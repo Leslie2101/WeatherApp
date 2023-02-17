@@ -12,7 +12,7 @@ user = Blueprint("user", __name__)
 def index():
     
     # Enter your API key here
-    api_key = "27ef55e9469e24ef048ac606ef5f3a9f"
+    api_key = {YOUR API KEY}
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
     convert = {'imperial' : 'F', 'metric': 'C'}
     unit = 'metric'
